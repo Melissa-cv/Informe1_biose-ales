@@ -1,0 +1,174 @@
+###a)Cree el siguiente par de vectores: a = [67.1,1, -0.3, 5.2, -6], b= [1, 3, 2.2, 5.1, 1]
+import numpy as np 
+import matplotlib.pyplot as plt
+
+a=np.array([67.1,1, -0.3, 5.2, -6])
+b=np.array([1, 3, 2.2, 5.1, 1])
+print('PUNTO A')
+print('primer vector: ',a)
+print('segundo vector: ', b)
+print('\n')
+
+###b) Implemente la multiplicación escalar de a.b ¿Qué se debe realizar para poder multiplicar los dos vectores?
+print('PUNTO B')
+p_escalar=np.dot(a,b)# utilizamos dor de la libreria de numpy para hacer el producto escalar 
+print('El producto escalar es: ',p_escalar)
+print('\n')
+
+###c)Implemente la multiplicación punto a punto de a.b.
+print('PUNTO c')
+producto = a * b
+print('El producto entre los vectores a y b es: ',producto)
+print('\n')
+###d)contruir una matriz 
+
+matriz=np.array([(2,-1,-3),(4,-1.5,-2.5),(7.3,-0.9,-0.2)])
+
+print('la matriz es: ',matriz)
+print('\n')
+
+###e)Obtenga su transpuesta AT.
+mtranspuesta=np.transpose(matriz)
+print('la matriz transpuesta es: ',mtranspuesta)#cambia los vectores filas y columnas 
+print('\n')
+
+###f) Consulte la función de los siguientes comandos de la librería numpy: ones, round, ceil, floor, 
+#implemente cada función para ejemplificar su uso
+
+#np.ones(dimensiones):Esta función crea un array de dimensiones especificas con los elementos es 1.
+fila=int(input('ingrese el número de filas que desea: '))
+columnas=int(input('ingrese el número de columnas que desea: '))
+
+ones=np.ones((fila, columnas))
+
+print('su matriz de unos es: ',ones)
+
+
+#np.round(arreglo): se utiliza para redondear los números decimales que hay en un arreglo 
+matriz1=([1.438, 3.581, 6.111, 8.971])
+ejround=np.round(matriz1, decimals=2)
+print('la matriz redondeada es: ', ejround)
+print('\n')
+
+#np.ceil(arreglo):se utiliza para redondear los números de un arreglo al entero MAYOR más cercano
+matriz2=([1.4, 3.5, 6.1, 8.9])
+ejceil=np.ceil(matriz2)
+print('la matriz redondeada es: ', ejceil)
+print('\n')
+
+#np.floor: se utiliza para redondear los números de un arreglo al entero MENOR más cercano
+
+matriz3=([1.4, 3.5, 6.1, 8.9])
+ejfloor=np.floor(matriz3)
+print('la matriz redondeada es: ', ejfloor)
+print('\n')
+
+#g) Acceda al valor de la primera fila, tercera columna de la matriz A, imprímalo en consola.
+matriz=np.array([(2,-1,-3),(4,-1.5,-2.5),(7.3,-0.9,-0.2)])
+elemento=(matriz[0,2])
+print('el elemento de la primera fila, y tercera columna es: ',elemento)
+print('\n')
+#h) Obtenga la segunda fila de dicha matriz, imprímalo en consola.
+
+fila=matriz[1,:]
+print('la segunda fila de la matriz es',fila)
+print('\n')
+
+#i) Consulte el comando para conocer las dimensiones de una matriz, utilícelo con la matriz A e 
+#imprímalo en consola.
+
+dim=np.shape(matriz)
+print('dimension de la matriz:',dim)
+print('\n')
+#Construya la función 𝑦[𝑛] = sin (𝜋 ∗ 0.18𝑛) en el intervalo 0 <= n <= 80.
+
+def y(n):
+      return np.sin(np.pi*0.18*n)
+n=np.linspace(0,80)
+plt.stem(n,y(n),'c')
+plt.xlabel('n')
+plt.ylabel('y[n]')
+plt.title('función seno')
+plt.grid(True)
+
+plt.show()
+
+#Construya otra senoidal 𝑦2[𝑛] = cos(2𝜋 ∗ 0.03𝑛)
+
+def y2(n):
+      return np.sin(2*np.pi*0.03*n)
+n=np.linspace(0,80,80)
+plt.stem(n,y(n),'r-')
+plt.xlabel('n')
+plt.ylabel('y[n]')
+plt.title('función coseno')
+plt.grid(True)
+plt.show()
+
+# Genere una tercera señal que sea la suma de estas dos señales, es decir 
+#𝑠[𝑛] = y[n] + 𝑦2[𝑛] y una cuarta, que sea el producto de estas, 𝑡[𝑛] = y[n]. 𝑦2[𝑛].
+
+x=np.linspace(0,80,80)
+y=np.sin(np.pi* 0.18*x)
+y2=np.cos(2*np.pi* 0.03*x)
+
+s=y+y2
+#plt.figure(figsize=(10, 5))
+plt.subplot(2, 1, 1)
+plt.stem(x,s,'g')
+plt.title('Señal s(n) = y(n) + y2(n)')
+plt.ylabel('s(n)')
+plt.grid(True)
+
+
+#𝑡[𝑛] = y[n]. 𝑦2[𝑛].
+
+plt.subplot(2, 1, 2)
+n2=np.linspace(0,80,80)
+y1=np.sin(np.pi* 0.18*y)
+y2=np.cos(2*np.pi* 0.03*y)
+
+t=y1*y2
+
+plt.stem(n2,t)
+plt.title('Señal s(n) = y(n) x y2(n)')
+plt.xlabel('n')
+plt.ylabel('s(n)')
+plt.grid(True)
+plt.show()
+
+# Y y Y2 superpuestas 
+
+x=np.linspace(0,80,80)
+y=np.sin(np.pi* 0.18*x)
+y2=np.cos(2*np.pi* 0.03*x)
+
+plt.plot(x,y,'m-', label='y')
+plt.plot(x,y2,'g-', label='y2')
+plt.title('Señales y(n) -y2(n)')
+plt.legend()
+plt.xlabel('n')
+plt.ylabel('y(n) - y2(n)')
+
+plt.grid(True)
+
+plt.show()
+
+#S y T superpuestas
+
+plt.plot(x,s,'c-', label='s(n)')
+plt.plot(x,t,'b-', label='t(n)')
+plt.title('Señales s(n) - t(n)')
+plt.legend()
+plt.xlabel('n')
+plt.ylabel('s(n) - t(n)')
+plt.grid(True)
+
+plt.show()
+
+
+
+
+
+
+
